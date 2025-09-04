@@ -6,7 +6,7 @@ node {
         checkout scm
 
         // Load groovy helper
-        def setupfile = load 'vars/setupfile.groovy'
+        def setupfile = load 'setupfile.groovy'
 
         // Call functions
         setupfile.cloneSource()
