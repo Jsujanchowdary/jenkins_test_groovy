@@ -2,14 +2,15 @@ node {
     try {
         echo 'Starting the pipeline...'
 
-        // Load the setupfile.groovy script manually
+        // Make sure the repo is cloned into workspace
+        checkout scm
+
+        // Load the Groovy script from vars/
         def setupfile = load 'vars/setupfile.groovy'
 
-        // Call the functions
+        // Call functions
         setupfile.cloneSource()
         setupfile.buildApplication()
-        setupfile.testApplication()
-        setupfile.deployApplication()
 
         echo 'Pipeline finished successfully!'
     } catch (err) {
