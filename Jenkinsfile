@@ -1,24 +1,22 @@
-// Import the shared library. 'my-jenkins-library' is the name you configure in Jenkins.
-pipeline {
-    agent any
+// Jenkinsfile (Scripted Pipeline)
 
-    stages {
-        // Now you just call the functions defined in myStages.groovy
-        // Jenkins makes the filename 'myStages' available as a global variable.
+node {
+    try {
+        echo 'Starting the pipeline...'
+
+        // Call functions from vars/setupfile.groovy
         setupfile.cloneSource()
         setupfile.buildApplication()
-        // You would create and call functions for your other stages (Test, Deploy) here as well.
-    }
+        setupfile.testApplication()
+        setupfile.deployApplication()
 
-    post {
-        always {
-            echo 'Pipeline has finished executing.'
-        }
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed. Please check the logs.'
-        }
+        echo 'Pipeline finished successfully!'
+    } catch (err) {
+        echo "Pipeline failed: ${err}"
+        currentBuild.result = 'FAILURE'
+        throw err
+    } finally {
+        // Optional cleanup
+        echo 'Pipeline execution finished.'
     }
 }
