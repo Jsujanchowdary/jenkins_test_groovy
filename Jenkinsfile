@@ -1,10 +1,11 @@
-// Jenkinsfile (Scripted Pipeline)
-
 node {
     try {
         echo 'Starting the pipeline...'
 
-        // Call functions from vars/setupfile.groovy
+        // Load the setupfile.groovy script manually
+        def setupfile = load 'vars/setupfile.groovy'
+
+        // Call the functions
         setupfile.cloneSource()
         setupfile.buildApplication()
         setupfile.testApplication()
@@ -16,7 +17,6 @@ node {
         currentBuild.result = 'FAILURE'
         throw err
     } finally {
-        // Optional cleanup
         echo 'Pipeline execution finished.'
     }
 }
