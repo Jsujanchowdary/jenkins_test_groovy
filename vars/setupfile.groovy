@@ -1,22 +1,37 @@
-// This script defines reusable pipeline stages
+// vars/setupfile.groovy
 
-// A function for the 'Clone Source' stage
+// Clone Source Stage
 def cloneSource() {
     stage('Clone Source') {
-        steps {
-            echo 'This stage is cloning a git repository from the shared library.'
-            sh 'echo "Running git clone command..."'
-        }
+        echo 'Cloning repository...'
+        sh 'echo "Running git clone command..."'
+        // Replace the above with actual git commands if needed
     }
 }
 
-// A function for the 'Build' stage
+// Build Stage
 def buildApplication() {
     stage('Build') {
-        steps {
-            echo 'This stage is for building the application.'
-            sh 'echo "Running build scripts..."'
-            sh 'echo "Build complete!"'
-        }
+        echo 'Building application...'
+        sh 'echo "Running build scripts..."'
+        sh 'echo "Build complete!"'
+    }
+}
+
+// Test Stage
+def testApplication() {
+    stage('Test') {
+        echo 'Running tests...'
+        sh 'echo "Executing test scripts..."'
+        sh 'echo "Tests complete!"'
+    }
+}
+
+// Deploy Stage
+def deployApplication() {
+    stage('Deploy') {
+        echo 'Deploying application...'
+        sh 'echo "Deploy scripts running..."'
+        sh 'echo "Deployment complete!"'
     }
 }
