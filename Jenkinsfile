@@ -2,10 +2,10 @@ node {
     try {
         echo 'Starting the pipeline...'
 
-        // Make sure repo is checked out
+        // Checkout Jenkinsfile repo
         checkout scm
 
-        // Load your groovy helper
+        // Load groovy helper
         def setupfile = load 'vars/setupfile.groovy'
 
         // Call functions
