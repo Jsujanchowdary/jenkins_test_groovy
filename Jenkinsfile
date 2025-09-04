@@ -1,6 +1,4 @@
 // Import the shared library. 'my-jenkins-library' is the name you configure in Jenkins.
-@Library('my-jenkins-library') _
-
 pipeline {
     agent any
 
