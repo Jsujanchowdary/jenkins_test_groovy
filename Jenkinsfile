@@ -2,7 +2,13 @@ node {
     try {
         echo 'Starting the pipeline...'
 
-        // No "load" needed — Jenkins automatically exposes vars/*.groovy
+        // Make sure repo is checked out
+        checkout scm
+
+        // Load your groovy helper
+        def setupfile = load 'vars/setupfile.groovy'
+
+        // Call functions
         setupfile.cloneSource()
         setupfile.buildApplication()
 
