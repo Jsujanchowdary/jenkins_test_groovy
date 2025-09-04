@@ -1,3 +1,5 @@
+// vars/setupfile.groovy
+
 def cloneSource() {
     echo 'This stage is cloning a git repository from the shared library.'
     sh 'echo "Running git clone command..."'
